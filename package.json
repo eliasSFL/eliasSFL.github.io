@@ -19,8 +19,8 @@
     "prettier": "^3.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.1.1",
-    "react-scripts": "5.0.1",
+    "react-router-dom": "^7.12.0",
+    "react-scripts": "^5.0.1",
     "react-tooltip": "^5.28.0",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
@@ -53,5 +53,19 @@
   },
   "devDependencies": {
     "eslint-config-react-app": "^7.0.1"
+  },
+  "resolutions": {
+    "react-router": "^7.12.0",
+    "@babel/runtime": "^7.26.10",
+    "@babel/helpers": "^7.26.10",
+    "http-proxy-middleware": "^2.0.9",
+    "qs": "^6.13.0",
+    "nth-check": "^2.0.1",
+    "brace-expansion": "^1.1.12",
+    "webpack-dev-server": "^5.2.1",
+    "postcss": "^8.4.31",
+    "js-yaml": "^4.1.1",
+    "form-data": "^3.0.4",
+    "glob": "^10.5.0"
   }
 }
