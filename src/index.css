@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  /* More Varied Palette - Light */
-  --color-bg: #f8fafc;
+  /* More Varied Palette - Light (distinct section tints) */
+  --color-bg: #f0f9ff;
   --color-surface: #ffffff;
   --color-text: #0f172a;
   --color-text-muted: #64748b;
-  --color-border: #e2e8f0;
-  /* Header: crisp white, Body: soft gray, Footer: slightly warmer gray */
-  --color-header-bg: #ffffff;
+  --color-border: #bae6fd;
+  /* Header: soft blue, Body: sky tint, Footer: deeper sky */
+  --color-header-bg: #eff6ff;
   --color-nav-text: #0f172a;
-  --color-footer-bg: #e2e8f0;
-  --color-footer-text: #475569;
+  --color-footer-bg: #e0f2fe;
+  --color-footer-text: #0c4a6e;
 
   /* Expanded accents */
   --color-accent: #0066cc;
