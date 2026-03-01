@@ -14,8 +14,8 @@ const NAVIGATION_LINKS = {
 export const Navigation: React.FC = () => {
   const { isDarkMode } = useIsDarkMode();
   return (
-    <nav>
-      <div className="nav-logo" style={{ backgroundColor: "var(--color-surface)" }}>
+    <nav className="sticky top-0 z-10">
+      <div className="nav-logo" style={{ backgroundColor: "var(--color-header-bg)" }}>
         <Link
           to="/"
           style={{ textDecoration: "none", color: "inherit" }}

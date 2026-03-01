@@ -13,8 +13,8 @@ const SwitchToggle: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className="flex items-center font-mono text-sm"
-      style={{ color: "var(--color-nav-text)" }}
+      className="flex items-center text-sm"
+      style={{ color: "var(--color-footer-text)" }}
     >
       <label style={{ marginRight: "10px" }}>
         {isToggled ? toggleEnabled : toggleDisabled}
@@ -25,7 +25,7 @@ const SwitchToggle: React.FC<Props> = ({
           width: "50px",
           height: "25px",
           borderRadius: "25px",
-          background: isToggled ? "var(--color-accent-alt)" : "var(--color-border)",
+          background: isToggled ? "var(--color-success)" : "var(--color-text-muted)",
           position: "relative",
           cursor: "pointer",
         }}

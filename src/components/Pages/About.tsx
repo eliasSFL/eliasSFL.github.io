@@ -40,15 +40,18 @@ export type SkillName = keyof typeof SkillIcons;
 
 export const About: React.FC = () => (
   <main className="m-0 px-4 py-8 max-w-5xl mx-auto flex flex-col gap-8">
-    <section className="flex flex-col-reverse md:flex-row items-center justify-between gap-6">
-      <div className="mr-0 md:mr-4 flex-1">
+    <section className="flex flex-col-reverse md:flex-row items-center justify-between gap-8">
+      <div className="mr-0 md:mr-6 flex-1">
         <h2
-          className="font-mono text-xl md:text-2xl mb-4"
-          style={{ color: "var(--color-accent)" }}
+          className="text-2xl md:text-3xl font-semibold mb-4"
+          style={{ color: "var(--color-accent-secondary)" }}
         >
-          &gt; About Me
+          About Me
         </h2>
-        <p className="leading-relaxed" style={{ color: "var(--color-text)" }}>
+        <p
+          className="leading-relaxed text-base md:text-lg"
+          style={{ color: "var(--color-text-muted)" }}
+        >
           Hi I'm Elias, a Software Engineer at Thought Farm Pty Ltd based in
           Singapore. I'm in the midst of a career transition from the creative
           world to the tech world. Transitioning from a creative background to
@@ -62,61 +65,48 @@ export const About: React.FC = () => (
       <img
         src={profilePicture}
         alt="Elias"
-        className="rounded-lg w-32 h-32 md:w-40 md:h-40 mt-4 border-2 transition-all duration-200 hover:shadow-lg"
-        style={{
-          borderColor: "var(--color-accent)",
-          boxShadow: "0 0 20px rgba(0, 217, 255, 0.2)",
-        }}
+        className="rounded-2xl w-32 h-32 md:w-44 md:h-44 object-cover shadow-lg transition-transform duration-200 hover:scale-[1.02]"
       />
     </section>
     <section id="skills">
       <h2
-        className="font-mono text-xl md:text-2xl mb-4"
-        style={{ color: "var(--color-accent)" }}
+        className="text-2xl md:text-3xl font-semibold mb-6"
+        style={{ color: "var(--color-accent-secondary)" }}
       >
-        &gt; Technical Skills
+        Technical Skills
       </h2>
-      <div
-        className="flex flex-row flex-wrap gap-3 p-4 rounded-lg"
-        style={{
-          backgroundColor: "var(--color-surface)",
-          border: "1px solid var(--color-border)",
-        }}
-      >
-        {Object.entries(SkillIcons).map(([name, icon], index) => {
-          return (
-            <React.Fragment key={index}>
-              <FontAwesomeIcon
-                icon={icon}
-                className={`w-10 h-10 md:w-12 md:h-12 skill-icon ${name}`}
-                style={{ color: "var(--color-accent)" }}
-              />
-              <Tooltip
-                anchorSelect={`.${name}`}
-                place="bottom"
-                openOnClick={!!isMobile}
-              >
-                {name}
-              </Tooltip>
-            </React.Fragment>
-          );
-        })}
+      <div className="flex flex-row flex-wrap gap-3">
+        {Object.entries(SkillIcons).map(([name, icon], index) => (
+          <div
+            key={index}
+            className={`skill-pill ${name}`}
+            style={{ color: "var(--color-text)" }}
+          >
+            <FontAwesomeIcon
+              icon={icon}
+              className="w-4 h-4 skill-icon"
+              style={{ color: "var(--color-muted-accent)" }}
+            />
+            <span>{name}</span>
+            <Tooltip
+              anchorSelect={`.${name}`}
+              place="bottom"
+              openOnClick={!!isMobile}
+            >
+              {name}
+            </Tooltip>
+          </div>
+        ))}
       </div>
     </section>
-    <section className="mb-5">
+    <section className="mb-8">
       <h2
-        className="font-mono text-xl md:text-2xl mb-4"
-        style={{ color: "var(--color-accent)" }}
+        className="text-2xl md:text-3xl font-semibold mb-6"
+        style={{ color: "var(--color-accent-secondary)" }}
       >
-        &gt; Soft Skills
+        Soft Skills
       </h2>
-      <ul
-        className="list-none p-4 rounded-lg space-y-2 font-mono text-sm"
-        style={{
-          backgroundColor: "var(--color-surface)",
-          border: "1px solid var(--color-border)",
-        }}
-      >
+      <ul className="list-none flex flex-wrap gap-3">
         {[
           "Communication",
           "Teamwork",
@@ -124,8 +114,12 @@ export const About: React.FC = () => (
           "Collaboration",
           "Inquisitiveness",
         ].map((skill) => (
-          <li key={skill} style={{ color: "var(--color-text)" }}>
-            • {skill}
+          <li
+            key={skill}
+            className="skill-pill"
+            style={{ color: "var(--color-text)" }}
+          >
+            {skill}
           </li>
         ))}
       </ul>

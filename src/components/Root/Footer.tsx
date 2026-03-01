@@ -7,10 +7,10 @@ export const Footer: React.FC = () => {
 
   return (
     <footer
-      className="flex flex-col-reverse p-2 md:p-4 text-center text-sm md:text-base relative font-mono"
+      className="flex flex-col-reverse p-6 md:p-8 text-center text-sm md:text-base relative"
       style={{
         backgroundColor: "var(--color-footer-bg)",
-        color: "var(--color-nav-text)",
+        color: "var(--color-footer-text)",
       }}
     >
       <div className="mt-2 md:mt-0 md:absolute md:bottom-4 md:left-4">
@@ -29,7 +29,7 @@ export const Footer: React.FC = () => {
           target="_blank"
           rel="noreferrer"
           className="mt-2 transition-colors hover:opacity-80"
-          style={{ color: "var(--color-accent)" }}
+          style={{ color: "var(--color-highlight)" }}
         >
           View Source Code
         </a>
