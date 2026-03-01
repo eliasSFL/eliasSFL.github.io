@@ -13,24 +13,26 @@ export const SkillsApplied: React.FC<Props> = ({ skillsArray }) => {
   const { isDarkMode } = useIsDarkMode();
   return (
     <>
-      <h3 className="font-bold my-3">Skills applied</h3>
+      <h3 className="font-mono text-sm my-3" style={{ color: "var(--color-text-muted)" }}>
+        Skills applied
+      </h3>
       <div className="flex flex-row flex-wrap gap-3">
         {skillsArray.map((name, index) => {
           const icon = SkillIcons(isDarkMode)[name];
           const isString = typeof icon === "string";
           return (
-            <>
+            <React.Fragment key={index}>
               {isString ? (
                 <img
                   src={icon}
                   alt={name}
-                  className={`w-10 h-10 md:w-16 md:h-16 ${name}`}
+                  className={`w-8 h-8 md:w-10 md:h-10 skill-icon ${name}`}
                 />
               ) : (
                 <FontAwesomeIcon
-                  key={index}
                   icon={icon}
-                  className={`w-10 h-10 md:w-16 md:h-16 ${name}`}
+                  className={`w-8 h-8 md:w-10 md:h-10 skill-icon ${name}`}
+                  style={{ color: "var(--color-accent)" }}
                 />
               )}
               <Tooltip
@@ -40,7 +42,7 @@ export const SkillsApplied: React.FC<Props> = ({ skillsArray }) => {
               >
                 {name}
               </Tooltip>
-            </>
+            </React.Fragment>
           );
         })}
       </div>

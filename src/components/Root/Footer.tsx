@@ -6,7 +6,13 @@ export const Footer: React.FC = () => {
   const { isDarkMode, toggleDarkMode } = useIsDarkMode();
 
   return (
-    <footer className="flex flex-col-reverse bg-[#234234] text-white p-2 md:p-4 text-center text-sm md:text-base relative">
+    <footer
+      className="flex flex-col-reverse p-2 md:p-4 text-center text-sm md:text-base relative font-mono"
+      style={{
+        backgroundColor: "var(--color-footer-bg)",
+        color: "var(--color-nav-text)",
+      }}
+    >
       <div className="mt-2 md:mt-0 md:absolute md:bottom-4 md:left-4">
         <SwitchToggle
           toggleEnabled={"Dark Mode"}
@@ -22,7 +28,8 @@ export const Footer: React.FC = () => {
           href="https://github.com/eliasSFL/portfolio"
           target="_blank"
           rel="noreferrer"
-          className="hover:text-blue-400 mt-2"
+          className="mt-2 transition-colors hover:opacity-80"
+          style={{ color: "var(--color-accent)" }}
         >
           View Source Code
         </a>

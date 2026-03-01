@@ -15,9 +15,9 @@ export const Navigation: React.FC = () => {
   const { isDarkMode } = useIsDarkMode();
   return (
     <nav>
-      <div className={`nav-logo ${isDarkMode ? "bg-[#3d3b3a]" : "bg-white"}`}>
+      <div className="nav-logo" style={{ backgroundColor: "var(--color-surface)" }}>
         <Link
-          to="/portfolio"
+          to="/"
           style={{ textDecoration: "none", color: "inherit" }}
           className="text-5xl"
         >

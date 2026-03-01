@@ -60,46 +60,62 @@ export const Contact: React.FC = () => {
   };
   return (
     <div className="flex flex-col items-center justify-center p-4 md:p-8">
-      <h1 className="mt-6">Contact Me</h1>
+      <h1 className="mt-6 font-mono text-2xl md:text-3xl" style={{ color: "var(--color-accent)" }}>
+        &gt; Contact Me
+      </h1>
       <img
         src={profilePicture}
         alt="Elias"
-        className="rounded-full w-32 h-32 md:w-40 md:h-40 mt-4"
+        className="rounded-lg w-32 h-32 md:w-40 md:h-40 mt-4 border-2 transition-all duration-200"
+        style={{ borderColor: "var(--color-accent)" }}
       />
-      <div className="flex flex-col items-center gap-3 mt-4 w-full">
-        <h2 className="my-5">Socials</h2>
-        <div className="flex flex-col md:flex-row md:flex-wrap justify-around w-2/3 gap-4 md:gap-8">
+      <div className="flex flex-col items-center gap-3 mt-6 w-full">
+        <h2 className="font-mono text-lg md:text-xl my-2" style={{ color: "var(--color-accent)" }}>
+          &gt; Socials
+        </h2>
+        <div className="flex flex-col md:flex-row md:flex-wrap justify-around w-full max-w-2xl gap-6 md:gap-8">
           {Object.entries(contactInfo).map(
             ([social, { link, icon, display, hover }]) => (
               <div
                 key={social}
-                className={`flex flex-col items-center ${hover ? "cursor-pointer" : ""}`}
+                className={`flex flex-col items-center p-4 rounded-lg transition-all duration-200 ${
+                  hover ? "cursor-pointer hover:bg-[var(--color-surface)]" : ""
+                }`}
+                style={{ border: "1px solid var(--color-border)" }}
                 onClick={() => link && handleClick(link)}
               >
                 <FontAwesomeIcon
                   icon={icon}
-                  className="w-24 h-24 md:w-40 md:h-40"
+                  className="w-12 h-12 md:w-16 md:h-16 transition-colors"
+                  style={{ color: "var(--color-accent)" }}
                 />
-                <span className="text-4xl mt-2">{social}</span>
+                <span className="font-mono text-sm mt-2" style={{ color: "var(--color-text)" }}>
+                  {social}
+                </span>
                 {link ? (
                   <a
                     href={link}
-                    className="text-blue-400 mt-2"
+                    className="font-mono text-xs mt-1 break-all"
+                    style={{ color: "var(--color-accent)" }}
                     target="_blank"
                     rel="noreferrer"
                   >
                     {display}
                   </a>
                 ) : (
-                  <span className="text-blue-400 mt-2">{display}</span>
+                  <span className="font-mono text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+                    {display}
+                  </span>
                 )}
               </div>
             )
           )}
         </div>
       </div>
-      <div className="mt-6 flex flex-col items-center">
-        <h2>Or fill in this form</h2>
+      <div className="mt-8 flex flex-col items-center">
+        <h2 className="font-mono text-lg md:text-xl mb-4" style={{ color: "var(--color-accent)" }}>
+          &gt; Or fill in this form
+        </h2>
         <iframe
           title="Contact Form"
           src="https://docs.google.com/forms/d/e/1FAIpQLSezSd2a3VpxDfErlGTmM8WtrgGFUrqLhu5Azs-MP_4pS6JE3w/viewform?embedded=true"

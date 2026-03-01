@@ -18,12 +18,23 @@ const PortfolioSiteSkills: SkillName[] = [
 export const Portfolio: React.FC<{
   openImageOnClick: (image: string) => Window | null;
 }> = ({ openImageOnClick }) => (
-  <section id="website" className="md:grid md:grid-cols-[1fr_auto] gap-5">
+  <section
+    id="website"
+    className="md:grid md:grid-cols-[1fr_auto] gap-6 p-5 rounded-lg"
+    style={{
+      backgroundColor: "var(--color-surface)",
+      border: "1px solid var(--color-border)",
+    }}
+  >
     <article>
-      <h2>Portfolio Website</h2>
-      <h3 className="mt-3">Why I decided to build my own portfolio site</h3>
-      <div className="flex flex-col gap-3">
-        <p>
+      <h2 className="font-mono text-lg md:text-xl" style={{ color: "var(--color-accent)" }}>
+        &gt; Portfolio Website
+      </h2>
+      <h3 className="mt-3 text-base md:text-lg" style={{ color: "var(--color-text)" }}>
+        Why I decided to build my own portfolio site
+      </h3>
+      <div className="flex flex-col gap-3 mt-3">
+        <p style={{ color: "var(--color-text)" }}>
           As a software developer, I believe in showcasing my technical skills
           and creativity. Instead of using pre-made templates like Wiz or
           SquareSpace, I chose to develop my portfolio website using React
@@ -41,7 +52,9 @@ export const Portfolio: React.FC<{
     </article>
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2 items-center">
-        <span className="text-center">Desktop View</span>
+        <span className="text-center font-mono text-sm" style={{ color: "var(--color-text-muted)" }}>
+          Desktop View
+        </span>
         <img
           src={portfolio}
           alt="Elias Portfolio"
@@ -50,7 +63,9 @@ export const Portfolio: React.FC<{
         />
       </div>
       <div className="flex flex-col gap-2 items-center">
-        <span className="text-center">Mobile View</span>
+        <span className="text-center font-mono text-sm" style={{ color: "var(--color-text-muted)" }}>
+          Mobile View
+        </span>
         <img
           src={portfolio_mobile}
           alt="Elias Portfolio Mobile"

@@ -13,16 +13,30 @@ export function getDarkModeSetting(): boolean {
   return cached ? JSON.parse(cached) : false;
 }
 
+function applyThemeToDocument(isDark: boolean) {
+  document.documentElement.setAttribute(
+    "data-theme",
+    isDark ? "dark" : "light"
+  );
+}
+
 export const useIsDarkMode = () => {
   const [isDarkMode, setIsDarkMode] = useState(getDarkModeSetting());
+
+  useEffect(() => {
+    applyThemeToDocument(isDarkMode);
+  }, [isDarkMode]);
 
   const toggleDarkMode = () => {
     const newValue = !isDarkMode;
     setIsDarkMode(newValue);
     cacheDarkModeSetting(newValue);
+    applyThemeToDocument(newValue);
   };
 
   useEffect(() => {
+    applyThemeToDocument(getDarkModeSetting());
+
     const handleDarkModeChange = (event: CustomEvent) => {
       setIsDarkMode(event.detail);
     };

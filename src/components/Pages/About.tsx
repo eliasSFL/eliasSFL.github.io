@@ -40,11 +40,13 @@ export type SkillName = keyof ReturnType<typeof SkillIcons>;
 export const About: React.FC = () => {
   const { isDarkMode } = useIsDarkMode();
   return (
-    <main className="m-0 px-4 max-w-5xl mx-auto flex flex-col gap-5">
-      <section className="flex flex-col-reverse md:flex-row items-center justify-between">
-        <div className="mr-0 md:mr-4">
-          <h2>About Me</h2>
-          <p>
+    <main className="m-0 px-4 py-8 max-w-5xl mx-auto flex flex-col gap-8">
+      <section className="flex flex-col-reverse md:flex-row items-center justify-between gap-6">
+        <div className="mr-0 md:mr-4 flex-1">
+          <h2 className="font-mono text-xl md:text-2xl mb-4" style={{ color: "var(--color-accent)" }}>
+            &gt; About Me
+          </h2>
+          <p className="leading-relaxed" style={{ color: "var(--color-text)" }}>
             Hi I'm Elias, a Software Engineer at Thought Farm Pty Ltd based in
             Singapore. I'm in the midst of a career transition from the creative
             world to the tech world. Transitioning from a creative background to
@@ -59,27 +61,39 @@ export const About: React.FC = () => {
         <img
           src={profilePicture}
           alt="Elias"
-          className="rounded-3xl w-32 h-32 md:w-40 md:h-40 mt-4"
+          className="rounded-lg w-32 h-32 md:w-40 md:h-40 mt-4 border-2 transition-all duration-200 hover:shadow-lg"
+          style={{
+            borderColor: "var(--color-accent)",
+            boxShadow: "0 0 20px rgba(0, 217, 255, 0.2)",
+          }}
         />
       </section>
       <section id="skills">
-        <h2>Technical Skills</h2>
-        <div className="flex flex-row flex-wrap gap-3">
+        <h2 className="font-mono text-xl md:text-2xl mb-4" style={{ color: "var(--color-accent)" }}>
+          &gt; Technical Skills
+        </h2>
+        <div
+          className="flex flex-row flex-wrap gap-3 p-4 rounded-lg"
+          style={{
+            backgroundColor: "var(--color-surface)",
+            border: "1px solid var(--color-border)",
+          }}
+        >
           {Object.entries(SkillIcons(isDarkMode)).map(([name, icon], index) => {
             const isString = typeof icon === "string";
             return (
-              <>
+              <React.Fragment key={index}>
                 {isString ? (
                   <img
                     src={icon}
                     alt={name}
-                    className={`w-10 h-10 md:w-16 md:h-16 ${name}`}
+                    className={`w-10 h-10 md:w-12 md:h-12 skill-icon ${name}`}
                   />
                 ) : (
                   <FontAwesomeIcon
-                    key={index}
                     icon={icon}
-                    className={`w-10 h-10 md:w-16 md:h-16 ${name}`}
+                    className={`w-10 h-10 md:w-12 md:h-12 skill-icon ${name}`}
+                    style={{ color: "var(--color-accent)" }}
                   />
                 )}
                 <Tooltip
@@ -89,19 +103,29 @@ export const About: React.FC = () => {
                 >
                   {name}
                 </Tooltip>
-              </>
+              </React.Fragment>
             );
           })}
         </div>
       </section>
       <section className="mb-5">
-        <h2>Soft Skills</h2>
-        <ul>
-          <li>Communication</li>
-          <li>Teamwork</li>
-          <li>Creativity</li>
-          <li>Collaboration</li>
-          <li>Inquisitiveness</li>
+        <h2 className="font-mono text-xl md:text-2xl mb-4" style={{ color: "var(--color-accent)" }}>
+          &gt; Soft Skills
+        </h2>
+        <ul
+          className="list-none p-4 rounded-lg space-y-2 font-mono text-sm"
+          style={{
+            backgroundColor: "var(--color-surface)",
+            border: "1px solid var(--color-border)",
+          }}
+        >
+          {["Communication", "Teamwork", "Creativity", "Collaboration", "Inquisitiveness"].map(
+            (skill) => (
+              <li key={skill} style={{ color: "var(--color-text)" }}>
+                • {skill}
+              </li>
+            )
+          )}
         </ul>
       </section>
     </main>
