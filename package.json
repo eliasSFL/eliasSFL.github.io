@@ -3,69 +3,52 @@
   "version": "0.1.0",
   "homepage": "https://eliassfl.github.io/",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "deploy": "gh-pages -d dist",
+    "depcheck": "depcheck"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@types/react-router-dom": "^5.3.3",
-    "gh-pages": "^6.2.0",
     "mobile-device-detect": "^0.4.3",
     "prettier": "^3.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.12.0",
-    "react-scripts": "^5.0.1",
     "react-tooltip": "^5.28.0",
-    "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build",
-    "depcheck": "depcheck"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
-    "eslint-config-react-app": "^7.0.1"
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.2.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^4.4.2",
+    "vite": "^6.0.3",
+    "vitest": "^2.1.8"
   },
   "resolutions": {
-    "react-router": "^7.12.0",
-    "@babel/runtime": "^7.26.10",
-    "@babel/helpers": "^7.26.10",
-    "http-proxy-middleware": "^2.0.9",
-    "qs": "^6.13.0",
-    "nth-check": "^2.0.1",
-    "brace-expansion": "^1.1.12",
-    "webpack-dev-server": "^5.2.1",
-    "postcss": "^8.4.31",
-    "js-yaml": "^4.1.1",
-    "form-data": "^3.0.4",
-    "glob": "^10.5.0"
+    "react-router": "^7.12.0"
+  },
+  "eslintConfig": {
+    "extends": ["react-app", "react-app/jest"]
+  },
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
   }
 }
