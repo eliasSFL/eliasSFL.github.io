@@ -7,6 +7,7 @@ import { useIsDarkMode } from "../../utils/darkMode";
 const NAVIGATION_LINKS = {
   About: "/",
   "My Story": "/story",
+  Experience: "/experience",
   Projects: "/projects",
   Contact: "/contact",
 };

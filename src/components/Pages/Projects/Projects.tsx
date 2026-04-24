@@ -1,6 +1,7 @@
 import React from "react";
 import { Portfolio } from "./Portfolio";
-import { SettingsMenu } from "./SFLProjects/SettingsMenu";
+import { SflProject } from "./SFLProjects/SflProject";
+import { sflProjects } from "../../../data/sflProjects";
 
 export const openImageOnClick = (image: string) => window.open(image, "_blank");
 
@@ -28,9 +29,18 @@ export const Projects: React.FC = () => {
           className="text-base mb-6"
           style={{ color: "var(--color-text-muted)" }}
         >
-          Here are some of the contributions that I made for Sunflower Land
+          Selected contributions from ~2,300 commits and ~1,900 merged PRs across
+          the FE and BE repos.
         </p>
-        <SettingsMenu openImageOnClick={openImageOnClick} />
+        <div className="flex flex-col gap-6">
+          {sflProjects.map((project) => (
+            <SflProject
+              key={project.id}
+              project={project}
+              openImageOnClick={openImageOnClick}
+            />
+          ))}
+        </div>
       </section>
     </main>
   );

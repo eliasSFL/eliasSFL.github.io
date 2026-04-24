@@ -15,6 +15,7 @@ import { About } from "../Pages/About";
 import { ErrorElement } from "../ErrorHandling/ErrorBoundary";
 import { MyStory } from "../Pages/MyStory";
 import { Projects } from "../Pages/Projects/Projects";
+import { Experience } from "../Pages/Experience";
 
 const appRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const appRouter = createBrowserRouter(
       <Route path="/" element={<Root />}>
         <Route index element={<About />} />
         <Route path="story" element={<MyStory />} />
+        <Route path="experience" element={<Experience />} />
         <Route path="projects" element={<Projects />} />
         <Route path="contact" element={<Contact />} />
         <Route path="*" element={<ErrorElement />} />
