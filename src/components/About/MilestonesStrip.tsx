@@ -1,6 +1,7 @@
 import React from "react";
+import { formatCommitCount, useCommitCount } from "../../utils/commitCount";
 
-const SFL_START = new Date("2023-08-09");
+const SFL_START = new Date("2024-07-10");
 
 const formatTenure = (start: Date, now: Date): string => {
   let years = now.getFullYear() - start.getFullYear();
@@ -16,9 +17,10 @@ const formatTenure = (start: Date, now: Date): string => {
 };
 
 export const MilestonesStrip: React.FC = () => {
+  const commitCount = useCommitCount();
   const milestones: { label: string; value: string }[] = [
     { value: "Aug 2023", label: "First SFL PR" },
-    { value: "1,900+", label: "Merged PRs" },
+    { value: formatCommitCount(commitCount), label: "Repo commits" },
     { value: "8+", label: "Languages shipped" },
     { value: formatTenure(SFL_START, new Date()), label: "Tenure at SFL" },
   ];

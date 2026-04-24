@@ -20,7 +20,7 @@ import { Experience } from "../Pages/Experience";
 const appRouter = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<Root />}>
+      <Route path="/" element={<Root />} errorElement={<ErrorElement />}>
         <Route index element={<About />} />
         <Route path="story" element={<MyStory />} />
         <Route path="experience" element={<Experience />} />

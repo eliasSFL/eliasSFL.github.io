@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   useRouteError,
   isRouteErrorResponse,
@@ -27,13 +27,12 @@ export class ErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
-    // You can log the error to an error reporting service here
     console.error("ErrorBoundary caught an error", error, errorInfo);
   }
 
   render(): React.ReactNode {
     if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+      return <ErrorCard title="Something went wrong" />;
     }
     return this.props.children;
   }
@@ -41,40 +40,131 @@ export class ErrorBoundary extends React.Component<
 
 export const ErrorElement: React.FC = () => {
   const error = useRouteError();
+
   if (isRouteErrorResponse(error)) {
     return (
-      <div>
-        <h1>Error {error.status}</h1>
-        <p>{error.statusText}</p>
-        <ReturnHomeButton />
-      </div>
-    );
-  } else if (error instanceof Error) {
-    return (
-      <div>
-        <h1>Unexpected Application Error!</h1>
-        <p>{error.message}</p>
-        <ReturnHomeButton />
-      </div>
-    );
-  } else {
-    return (
-      <div className="flex flex-col items-center gap-3">
-        <h1>Unknown Error</h1>
-        <ReturnHomeButton />
-      </div>
+      <ErrorCard
+        eyebrow={`Error ${error.status}`}
+        title={error.status === 404 ? "Page not found" : error.statusText}
+        body={
+          error.status === 404
+            ? "The page you're looking for doesn't exist or has moved."
+            : undefined
+        }
+      />
     );
   }
+
+  if (error instanceof Error) {
+    return (
+      <ErrorCard
+        eyebrow="Unexpected error"
+        title="Something broke while rendering this page"
+        body={error.message}
+        details={error.stack}
+      />
+    );
+  }
+
+  return <ErrorCard title="Unknown error" />;
 };
 
-const ReturnHomeButton: React.FC = () => {
+interface ErrorCardProps {
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  details?: string;
+}
+
+const ErrorCard: React.FC<ErrorCardProps> = ({
+  eyebrow,
+  title,
+  body,
+  details,
+}) => {
   const navigate = useNavigate();
+  const [showDetails, setShowDetails] = useState(false);
+  const isDev = import.meta.env?.DEV ?? false;
+
   return (
-    <button
-      className="border-solid border-2 border-blue-500 text-white bg-blue-500 hover:bg-blue-700 rounded-md px-4 py-2 transition-all duration-200"
-      onClick={() => navigate("/")}
-    >
-      Return Home
-    </button>
+    <main className="m-0 px-4 py-12 max-w-3xl mx-auto flex flex-col items-center text-center">
+      <section
+        className="w-full p-6 md:p-10 rounded-2xl shadow-sm flex flex-col items-center gap-4"
+        style={{
+          backgroundColor: "var(--color-surface)",
+          border: "1px solid var(--color-border)",
+        }}
+      >
+        {eyebrow && (
+          <span
+            className="text-xs uppercase tracking-wider font-semibold"
+            style={{ color: "var(--color-text-muted)" }}
+          >
+            {eyebrow}
+          </span>
+        )}
+        <h1
+          className="text-2xl md:text-3xl font-semibold"
+          style={{ color: "var(--color-accent-secondary)" }}
+        >
+          {title}
+        </h1>
+        {body && (
+          <p
+            className="leading-relaxed text-sm md:text-base max-w-prose"
+            style={{ color: "var(--color-text)" }}
+          >
+            {body}
+          </p>
+        )}
+        <div className="flex flex-row flex-wrap gap-3 mt-2">
+          <button
+            onClick={() => navigate("/")}
+            className="px-4 py-2 rounded-xl font-medium text-sm transition-transform duration-150 hover:scale-[1.02]"
+            style={{
+              backgroundColor: "var(--color-accent)",
+              color: "var(--color-bg)",
+              border: "1px solid var(--color-accent)",
+            }}
+          >
+            Return home
+          </button>
+          <button
+            onClick={() => navigate(-1)}
+            className="px-4 py-2 rounded-xl font-medium text-sm transition-transform duration-150 hover:scale-[1.02]"
+            style={{
+              backgroundColor: "transparent",
+              color: "var(--color-text)",
+              border: "1px solid var(--color-border)",
+            }}
+          >
+            Go back
+          </button>
+        </div>
+        {isDev && details && (
+          <div className="w-full mt-4">
+            <button
+              onClick={() => setShowDetails((s) => !s)}
+              className="text-xs underline"
+              style={{ color: "var(--color-text-muted)" }}
+            >
+              {showDetails ? "Hide" : "Show"} stack trace (dev only)
+            </button>
+            {showDetails && (
+              <pre
+                className="mt-2 text-left text-xs overflow-auto p-3 rounded-lg max-h-64"
+                style={{
+                  backgroundColor: "var(--color-bg)",
+                  border: "1px solid var(--color-border)",
+                  color: "var(--color-text-muted)",
+                }}
+              >
+                {details}
+              </pre>
+            )}
+          </div>
+        )}
+      </section>
+    </main>
   );
 };
